@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>mcbbs指数</title>
+</head>
+<body style="margin: 0">
+    <div style="background-color: #1f1f1f; width: 100%; height: 90px; margin: 0">
+        <div style="height: 90px; float: left">
+            <h1 style="color: white; text-align: left; margin-left: 16px"> BBS Index - mcbbs服务器指数</h1>
+        </div>
+    </div>
+
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div style="height: 50px"></div>
+<div id="line" style="width: 100%; height: 450px"></div>
+<!-- 引入 echarts.js -->
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.1.0/echarts.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+
+    var lineDom = document.getElementById('line');
+    var lineChart = echarts.init(lineDom);
+
+    $(function () {
+        $.get("http://localhost:8080/charts/chart1", function (data) {
+            console.log(data)
+
+            var option = {
+                tooltip: {
+                    trigger: 'axis',
+                    position: function (pt) {
+                        return [pt[0], '10%'];
+                    }
+                },
+                title: {
+                    left: 'center',
+                    text: 'mcbbs服务器版 -   服务器总数'
+                },
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: data.xaxis
+                },
+                yAxis: {
+                    type: 'value',
+                    boundaryGap: [0, '50%'],
+                    min: 800,
+                    max: 1000
+                },
+                dataZoom: [
+                    {
+                        type: 'inside',
+                        start: 0,
+                        end: 100
+                    }
+                ],
+                series: [
+                    {
+                        name: '服务器总数',
+                        type: 'line',
+                        symbol: 'none',
+                        sampling: 'lttb',
+                        itemStyle: {
+                            color: 'rgb(255, 70, 131)'
+                        },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                {
+                                    offset: 0,
+                                    color: 'rgb(255, 158, 68)'
+                                },
+                                {
+                                    offset: 1,
+                                    color: 'rgb(255, 70, 131)'
+                                }
+                            ])
+                        },
+                        data: data.series.data
+                    }
+                ]
+            };
+
+            console.log(option)
+            lineChart.setOption(option)
+        })
+    })
+</script>
+</body>
+
+<footer style="background-color: #dadada; position: absolute; bottom: 0; width: 100%">
+
+    <div>
+        <a href="https://beian.miit.gov.cn/" style="margin-left: 40%">©copyright mcyou.cn 滇ICP备2022005980号</a>
+    </div>
+
+</footer>
+</html>
