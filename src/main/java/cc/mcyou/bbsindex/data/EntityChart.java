@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity(name="server_count")
 @Table(name="server_count")
 @NoArgsConstructor
-public class EntityChart1 {
+public class EntityChart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,4 +18,6 @@ public class EntityChart1 {
     private String date;
     @NonNull
     private int num;
+    @NonNull
+    private int server_index;
 }

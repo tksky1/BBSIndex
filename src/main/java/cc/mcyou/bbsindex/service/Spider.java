@@ -1,8 +1,7 @@
 package cc.mcyou.bbsindex.service;
 
-import cc.mcyou.bbsindex.dao.Chart1Repository;
-import cc.mcyou.bbsindex.data.EntityChart1;
-import cc.mcyou.bbsindex.data.ResData;
+import cc.mcyou.bbsindex.dao.ChartRepository;
+import cc.mcyou.bbsindex.data.EntityChart;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jsoup.Jsoup;
@@ -24,10 +23,9 @@ public class Spider {
     //private ArrayList<Integer> serverNumberList = new ArrayList<>();
 
     @Autowired
-    Chart1Repository chart1Repository;
+    ChartRepository chartRepository;
     @Autowired
     Entity2ResData entity2ResData;
-
 
     private long totView = 0;
     private long tot = 0;
@@ -45,13 +43,14 @@ public class Spider {
 
         for(int i = 1;i<=page_amount;i++) getData(i);
 
-        EntityChart1 entityChart1 = new EntityChart1();
+        EntityChart entityChart = new EntityChart();
         Date date = new Date();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        entityChart1.setDate(simpleDateFormat.format(date));
-        entityChart1.setNum((int) tot);
-        chart1Repository.save(entityChart1);
+        entityChart.setDate(simpleDateFormat.format(date));
+        entityChart.setNum((int) tot);
 
+        entityChart.setServer_index((int)(tot - chartRepository.findFirstById().getNum()));
+        chartRepository.save(entityChart);
 
     }
 

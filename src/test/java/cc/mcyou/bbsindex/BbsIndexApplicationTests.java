@@ -1,6 +1,6 @@
 package cc.mcyou.bbsindex;
 
-import cc.mcyou.bbsindex.dao.Chart1Repository;
+import cc.mcyou.bbsindex.dao.ChartRepository;
 import cc.mcyou.bbsindex.service.Spider;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import java.io.IOException;
 class BbsIndexApplicationTests {
 
 	@Autowired
-	Chart1Repository chart1Repository;
+	ChartRepository chartRepository;
 
 	@Autowired
 	Spider spider;
