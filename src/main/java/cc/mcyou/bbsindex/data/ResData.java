@@ -10,5 +10,6 @@ import java.util.List;
 public class ResData {
     List<String> xAxis;
     SeriesData series;
+    List<Integer> extraData;
 }
 

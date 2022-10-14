@@ -20,4 +20,22 @@ public class EntityChart {
     private int num;
     @NonNull
     private int server_index;
+    @NonNull
+    private long tot_view;
+    @NonNull
+    private int cnt_sc;
+    @NonNull
+    private int cnt_cz;
+    @NonNull
+    private int cnt_hh;
+    @NonNull
+    private int cnt_zz;
+    @NonNull
+    private int cnt_rpg;
+    @NonNull
+    private int cnt_xyx;
+    @NonNull
+    private long view_index;
+    @NonNull
+    private int cnt_gy;
 }

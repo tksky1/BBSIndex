@@ -13,7 +13,7 @@ public class SeriesData {
     String type = "line";
     boolean smooth = true;
     String symbol = "none";
-    List<Integer> data;
+    List<Long> data;
 }
 
 

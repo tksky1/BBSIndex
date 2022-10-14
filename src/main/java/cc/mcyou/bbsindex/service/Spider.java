@@ -29,7 +29,7 @@ public class Spider {
 
     private long totView = 0;
     private long tot = 0;
-    private long cnt_sc= 0,cnt_cz = 0,cnt_hh = 0,cnt_zz = 0, cnt_rpg = 0,cnt_xyx = 0,cnt_gy = 0;
+    private int cnt_sc= 0,cnt_cz = 0,cnt_hh = 0,cnt_zz = 0, cnt_rpg = 0,cnt_xyx = 0,cnt_gy = 0;
     final private String userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36 Edg/104.0.1293.70";
 
     public void start() throws IOException {
@@ -49,7 +49,17 @@ public class Spider {
         entityChart.setDate(simpleDateFormat.format(date));
         entityChart.setNum((int) tot);
 
-        entityChart.setServer_index((int)(tot - chartRepository.findFirstById().getNum()));
+        EntityChart FirstEntity = chartRepository.findFirstById();
+        entityChart.setServer_index((int)(tot - FirstEntity.getNum()));
+        entityChart.setTot_view(totView);
+        entityChart.setView_index(totView - FirstEntity.getTot_view());
+        entityChart.setCnt_sc(cnt_sc);
+        entityChart.setCnt_cz(cnt_cz);
+        entityChart.setCnt_hh(cnt_hh);
+        entityChart.setCnt_zz(cnt_zz);
+        entityChart.setCnt_rpg(cnt_rpg);
+        entityChart.setCnt_xyx(cnt_xyx);
+        entityChart.setCnt_gy(cnt_gy);
         chartRepository.save(entityChart);
 
     }
