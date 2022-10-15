@@ -43,7 +43,7 @@
             var lineChart1 = echarts.init(lineDom1);
 
             $(function () {
-                $.get("http://localhost:8080/charts/chart1", function (data1) {
+                $.get("http://mcbbs.mcyou.cc/charts/chart1", function (data1) {
                     console.log(data1)
 
                     var option1 = {
@@ -154,8 +154,8 @@
             var lineChart2 = echarts.init(lineDom2);
 
             $(function () {
-                $.get("http://localhost:8080/charts/chart2", function (data2) {
-                    $.get("http://localhost:8080/charts/chart3", function (data3){
+                $.get("http://mcbbs.mcyou.cc/charts/chart2", function (data2) {
+                    $.get("http://mcbbs.mcyou.cc/charts/chart3", function (data3){
                         console.log(data2)
                         console.log(data3)
 
@@ -262,7 +262,7 @@
             var lineDom3 = document.getElementById('line3');
             var lineChart3 = echarts.init(lineDom3);
             $(function () {
-                $.get("http://localhost:8080/charts/chart4", function (data4) {
+                $.get("http://mcbbs.mcyou.cc/charts/chart4", function (data4) {
                     console.log(data4)
 
                     var option4 = {
