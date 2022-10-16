@@ -38,7 +38,10 @@ public class Spider {
         tot = 0; totView = 0;cnt_sc= 0;cnt_cz = 0;cnt_hh = 0;cnt_zz = 0;cnt_rpg = 0;cnt_xyx = 0;cnt_gy = 0;
         Document document = Jsoup.connect("https://www.mcbbs.net/forum-server-1.html").userAgent(userAgent).get();
         int page_amount;
-        String string =   (document.getElementsByClass("last").text()).substring(4,6);
+
+        String string = (document.getElementsByClass("pg").text());
+        string = string.substring(string.indexOf('/')+2, string.indexOf('页') -1);
+        //String string =   (document.getElementsByClass("xw1 a").text()).substring(3,6);
         page_amount = Integer.parseInt(string);
 
         for(int i = 1;i<=page_amount;i++) getData(i);
